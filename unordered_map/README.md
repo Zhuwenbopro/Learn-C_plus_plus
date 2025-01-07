@@ -26,4 +26,4 @@ Parameter param2 = Parameter<float>("param2");
 ```
 ---
 
-另外 unordered_map 在赋值时（`std::unordered_map<std::string, Parameter<float>> params1 = params`）会调用拷贝构造函数复制内部所有的元素，所以如果过元素过大或过多会影响性能。
+另外 unordered_map 在拷贝时（`std::unordered_map<std::string, Parameter<float>> params1 = params`）会调用拷贝构造函数复制内部所有的元素，所以如果过元素过大或过多会影响性能。
