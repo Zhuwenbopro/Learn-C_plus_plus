@@ -74,6 +74,9 @@ public:
 int main() {
     // std::unordered_map 要求 Parameter<float> 类型是可默认构造的。
     std::unordered_map<std::string, Parameter<float>> params;
+
+    std::cout << "\n+++\n";
+
     params["param3"];   // 只是这样就会调用默认构造函数
     // 默认 Parameter 构造函数
 
@@ -98,7 +101,83 @@ int main() {
     // 拷贝构造函数被调用: param2
     // 拷贝构造函数被调用: param1
     // 拷贝构造函数被调用:
+    std::unordered_map<std::string, Parameter<float>> params2;
+
+    std::cout << "\n+++\n";
+
+    params2 = params;
+
+    std::cout << "\n+++\n";
 
     params1["param1"].print();
 
+    std::cout << "\n+++\n";
+
 }
+
+/*
+
+    +++
+
+    默认 Parameter 构造函数
+
+    +++
+
+    Parameter Constructor : param1
+
+    默认 Parameter 构造函数
+
+    移动赋值运算符被调用: param1
+
+    Parameter 析构
+
+    +++
+
+    Parameter Constructor : param2
+
+    移动构造函数被调用: param2
+
+    Parameter 析构
+
+    +++
+
+    拷贝构造函数被调用: param2
+
+    拷贝构造函数被调用: param1
+
+    拷贝构造函数被调用:
+
+    +++
+
+    拷贝构造函数被调用: param2
+
+    拷贝构造函数被调用: param1
+
+    拷贝构造函数被调用:
+
+    +++
+
+    Print() Parameter param1
+    20 21 22 23 24 25 26 27 28 29
+    ptr's use_count = 3
+
+    +++
+
+    Parameter 析构 param2
+
+    Parameter 析构 param1
+
+    Parameter 析构
+
+    Parameter 析构 param2
+
+    Parameter 析构 param1
+
+    Parameter 析构
+
+    Parameter 析构 param2
+
+    Parameter 析构 param1
+
+    Parameter 析构
+*/
